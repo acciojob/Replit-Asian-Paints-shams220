@@ -1,26 +1,44 @@
-//your JS code here. If required.
 let cells = document.querySelectorAll('.grid-item');
-let cellId = document.querySelectorAll('input')[0];
-let colorId = document.querySelectorAll('input')[1];
-let changeBtn = document.querySelectorAll('button')[0];
-let resetBtn = document.querySelectorAll('button')[1];
- cells.forEach((c) => {
-        c.style.backgroundColor = "transparent";
+
+let blockInput = document.getElementById('block_id');
+let colorInput = document.getElementById('colour_id');
+
+let changeBtn = document.getElementById('change_button');
+let resetBtn = document.getElementById('reset_button');
+
+
+// Reset all cells initially
+cells.forEach(cell => {
+    cell.style.backgroundColor = "transparent";
+});
+
+
+// Change button logic
+changeBtn.addEventListener('click', () => {
+
+    let blockValue = blockInput.value;
+    let colorValue = colorInput.value;
+
+    // reset all first
+    cells.forEach(cell => {
+        cell.style.backgroundColor = "transparent";
     });
-changeBtn.addEventListener('click',()=>{
-	let cellValue = cellId.value;
-	let colorValue = colorId.value;
 
-	for(let i = 1;i<=cells.length;i++){
-		if(i == cellValue){
-			cells[i-1].style.backgroundColor=colorValue;
-			return;
-		}
-	}
-})
+    // apply new color
+    let selectedCell = document.getElementById(blockValue);
 
-resetBtn.addEventListener('click',()=>{
-	cells.forEach((c)=>{
-		c.style.backgroundColor="transparent"
-	})
-})
+    if(selectedCell){
+        selectedCell.style.backgroundColor = colorValue;
+    }
+
+});
+
+
+// Reset button logic
+resetBtn.addEventListener('click', () => {
+
+    cells.forEach(cell => {
+        cell.style.backgroundColor = "transparent";
+    });
+
+});
